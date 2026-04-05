@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Список карточек{% endblock %}
+{% block content %}
+<h2>Список приветствий</h2>
+
+<form method="get" class="inline-form">
+    <input type="text" name="q" value="{{ query }}" placeholder="Поиск по языку или слову">
+    <button type="submit">Найти</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>Язык</th>
+        <th>Приветствие</th>
+        <th>Перевод</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for card in cards %}
+        <tr>
+            <td>{{ card.language }}</td>
+            <td>{{ card.greeting }}</td>
+            <td>{{ card.translation_ru }}</td>
+            <td>
+                <a href="{{ url_for('greeting_detail', card_id=card.id) }}">Подробнее</a>
+                <a href="{{ url_for('greeting_edit', card_id=card.id) }}">Изменить</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="4">Ничего не найдено.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

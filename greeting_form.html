@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}{{ card.language }}{% endblock %}
+{% block content %}
+<article class="card">
+    <h2>{{ card.language }}</h2>
+    <p><strong>Приветствие:</strong> {{ card.greeting }}</p>
+    <p><strong>Перевод:</strong> {{ card.translation_ru }}</p>
+    <p><strong>Комментарий:</strong> {{ card.note }}</p>
+
+    <div class="actions">
+        <a class="button" href="{{ url_for('greeting_edit', card_id=card.id) }}">Редактировать</a>
+        <form method="post" action="{{ url_for('greeting_delete', card_id=card.id) }}"
+              onsubmit="return confirm('Удалить карточку?');">
+            <button class="danger" type="submit">Удалить</button>
+        </form>
+    </div>
+</article>
+{% endblock %}

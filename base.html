@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Flashcards{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="site-header">
+    <h1>🌍 World Greetings Trainer</h1>
+    <nav>
+        <a href="{{ url_for('home') }}">Главная</a>
+        <a href="{{ url_for('greetings_list') }}">Карточки</a>
+        <a href="{{ url_for('greeting_add') }}">Добавить</a>
+        <a href="{{ url_for('quiz') }}">Квиз</a>
+        <a href="{{ url_for('stats') }}">Статистика</a>
+    </nav>
+</header>
+
+<main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+    <p>Учебный проект по веб-разработке · 2026</p>
+</footer>
+</body>
+</html>

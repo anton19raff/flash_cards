@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Не найдено{% endblock %}
+{% block content %}
+<section class="card">
+    <h2>Страница не найдена</h2>
+    <p>Запрошенная карточка отсутствует в базе.</p>
+    <a class="button" href="{{ url_for('greetings_list') }}">К списку</a>
+</section>
+{% endblock %}

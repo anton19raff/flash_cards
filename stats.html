@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Статистика{% endblock %}
+{% block content %}
+<section class="card">
+    <h2>Статистика проекта</h2>
+    <p><strong>Всего карточек:</strong> {{ total }}</p>
+    <h3>Примеры языков</h3>
+    <ul>
+    {% for row in examples %}
+        <li>{{ row.language }} — {{ row.greeting }}</li>
+    {% endfor %}
+    </ul>
+</section>
+{% endblock %}
